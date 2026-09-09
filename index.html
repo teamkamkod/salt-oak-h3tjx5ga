@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Salt & Oak ร้านอาหารทะเลสดใหม่บนเกาะสมุย บริการเปิดกันเอง ปรุงตามสั่ง เปิดทุกวัน 13:00-23:00 น. รีวิว 4.9 ดาวจากลูกค้ากว่า 1,419 คน">
+    <title>Salt & Oak – อาหารทะเลสดใหม่บนเกาะสมุย</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&family=Mukta:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FFB7B2;
+            --secondary: #B5EAD7;
+            --background: #FFF9E6;
+            --text: #4A4A4A;
+            --cta: #FF9AA2;
+            --font-heading: 'Baloo 2', sans-serif;
+            --font-body: 'Mukta', sans-serif;
+            --radius: 50px;
+            --spacing-unit: 1.5rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text);
+            background-color: var(--background);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(255, 249, 230, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem var(--spacing-unit);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--cta);
+        }
+
+        .nav-menu {
+            display: none;
+            list-style: none;
+            gap: var(--spacing-unit);
+        }
+
+        .nav-menu.open {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background-color: var(--background);
+            padding: var(--spacing-unit);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--cta);
+        }
+
+        .burger-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .burger-menu span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        @media (min-width: 768px) {
+            .nav-menu {
+                display: flex;
+                position: static;
+                background-color: transparent;
+                box-shadow: none;
+                padding: 0;
+                flex-direction: row;
+            }
+
+            .nav-menu.open {
+                display: flex;
+                flex-direction: row;
+                position: static;
+                background-color: transparent;
+                box-shadow: none;
+                padding: 0;
+            }
+
+            .burger-menu {
+                display: none;
+            }
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background-image: url('assets/hero.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.35);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: var(--spacing-unit);
+            max-width: 600px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--cta);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius);
+            font-weight: 700;
+            font-family: var(--font-heading);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            background-color: #FF8A92;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(255, 154, 162, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: calc(var(--spacing-unit) * 3) var(--spacing-unit);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            color: var(--text);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            text-align: center;
+        }
+
+        /* About Section */
+        #apropos {
+            background-color: #FFFBF0;
+        }
+
+        #apropos p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            text-align: justify;
+            color: var(--text);
+        }
+
+        /* Featured Menu */
+        #menu {
+            background-color: var(--background);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: calc(var(--spacing-unit) * 2);
+            margin-top: calc(var(--spacing-unit) * 2);
+        }
+
+        @media (min-width: 768px) {
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .menu-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .menu-card {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: calc(var(--spacing-unit) * 1.5);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .menu-card h3 {
+            font-family: var(--font-heading);
+            color: var(--cta);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .menu-card p {
+            color: var(--text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Customer Reviews */
+        #avis {
+            background-color: #FFFBF0;
+        }
+
+        .reviews-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: calc(var(--spacing-unit) * 2);
+            margin-top: calc(var(--spacing-unit) * 2);
+        }
+
+        @media (min-width: 768px) {
+            .reviews-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .reviews-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .review-card {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: calc(var(--spacing-unit) * 1.5);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .stars {
+            color: #FFD700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .review-text {
+            color: var(--text);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .review-author {
+            font-weight: 700;
+            color: var(--cta);
+            font-size: 0.9rem;
+        }
+
+        .review-date {
+            color: #999;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Gallery */
+        #galerie {
+            background-color: var(--background);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: calc(var(--spacing-unit) * 1.5);
+            margin-top: calc(var(--spacing-unit) * 2);
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            aspect-ratio: 1;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Asymmetric Gallery Grid */
+        .gallery-grid {
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        }
+
+        .gallery-item:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-item:nth-child(3) {
+            grid-column: span 2;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-item:nth-child(1) {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .gallery-item:nth-child(3) {
+                grid-column: span 1;
+            }
+        }
+
+        /* Hours & Location */
+        #horaires {
+            background-color: #FFFBF0;
+        }
+
+        .hours-location-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: calc(var(--spacing-unit) * 2);
+            margin-top: calc(var(--spacing-unit) * 2);
+        }
+
+        @media (min-width: 768px) {
+            .hours-location-wrapper {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .hours-table {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: calc(var(--spacing-unit) * 1.5);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .hours-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .hours-table th,
+        .hours-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #EEE;
+        }
+
+        .hours-table th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 700;
+        }
+
+        .hours-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .location-info {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: calc(var(--spacing-unit) * 1.5);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .location-info h3 {
+            font-family: var(--font-heading);
+            color: var(--cta);
+            margin-bottom: 1rem;
+        }
+
+        .location-info p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Contact Form */
+        #contact {
+            background-color: var(--background);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: calc(var(--spacing-unit) * 2) auto 0;
+            background-color: white;
+            padding: calc(var(--spacing-unit) * 2);
+            border-radius: var(--radius);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #EEE;
+            border-radius: 12px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--cta);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--cta);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 700;
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-group button:hover {
+            background-color: #FF8A92;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(255, 154, 162, 0.3);
+        }
+
+        /* Trust Signals */
+        #confiance {
+            background-color: #FFFBF0;
+        }
+
+        .trust-signals-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: calc(var(--spacing-unit) * 2);
+            margin-top: calc(var(--spacing-unit) * 2);
+        }
+
+        @media (min-width: 768px) {
+            .trust-signals-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .trust-badge {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: calc(var(--spacing-unit) * 1.5);
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .trust-badge .number {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--cta);
+            margin-bottom: 0.5rem;
+        }
+
+        .trust-badge p {
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text);
+            color: white;
+            padding: calc(var(--spacing-unit) * 2) var(--spacing-unit);
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 767px) {
+            section {
+                padding: calc(var(--spacing-unit) * 2) var(--spacing-unit);
+            }
+
+            .hours-location-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .map-container {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav>
+            <div class="logo">Salt & Oak</div>
+            <button class="burger-menu" id="burgerBtn" aria-label="เมนูนำทาง">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#hero">หน้าแรก</a></li>
+                <li><a href="#apropos">เกี่ยวกับเรา</a></li>
+                <li><a href="#menu">เมนูเด่น</a></li>
+                <li><a href="#avis">รีวิว</a></li>
+                <li><a href="#horaires">เวลาเปิด</a></li>
+                <li><a href="#contact">ติดต่อ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Salt & Oak</h1>
+            <p>อาหารทะเลสดใหม่ ปรุงตามสั่ง บนเกาะสมุย</p>
+            <a href="#contact" class="btn-primary">จองโต๊ะวันนี้</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="apropos">
+        <h2>เกี่ยวกับเรา</h2>
+        <p>Salt & Oak คือร้านอาหารทะเลบนเกาะสมุย ที่เน้นความสดใหม่ของวัตถุดิบ ทุกจานปรุงตามสั่งด้วยใจ ทีมงานพร้อมดูแลคุณอย่างเป็นกันเอง และยินดีปรับเมนูตามความต้องการพิเศษของคุณ</p>
+    </section>
+
+    <!-- Featured Menu -->
+    <section id="menu">
+        <h2>เมนูเด่น</h2>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <h3>ปลากะพงสด</h3>
+                <p>ปลากะพงสด ปรุงตามสั่ง เสิร์ฟพร้อมผัดข้างเคียง</p>
+            </div>
+            <div class="menu-card">
+                <h3>หอยนางรมสไตล์ไทย</h3>
+                <p>หอยนางรม สดใหม่ ปรุงแบบไทยตามคำขอ (ไม่ไดอยู่ในเมนู แต่ทางร้านทำให้ได้)</p>
+            </div>
+            <div class="menu-card">
+                <h3>อาหารทะเลรวม</h3>
+                <p>รวมความสดของทะเลในจานเดียว อิ่มอร่อยได้ทั้งมื้อ</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews -->
+    <section id="avis">
+        <h2>รีวิวจากลูกค้า</h2>
+        <div class="reviews-container">
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Perfect restaurant if you're looking for a fresh seafood dinner! Everything is prepared to order, and the staff are very helpful with special requests. I wanted Thai-style oysters, and even though they weren't on the menu, they kindly made them for me. They also have a pretty impressive seafood display in front of the restaurant. Highly recommended! ☺️"</p>
+                <div class="review-author">Alicia Uva</div>
+                <div class="review-date">ในสัปดาห์ที่ผ่านมา</div>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"I had been craving seafood and this restaurant gave me a taste of everything fresh. Zin Min and Nilar were my waiters here and I had such a great relaxing experience. My food was very good and they never let my sauce get low. Haha! I felt very well taken care of I would 100% recommend this place."</p>
+                <div class="review-author">Mai Eve</div>
+                <div class="review-date">ในสัปดาห์ที่ผ่านมา</div>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"We happened upon it by chance, we had the snapper with a side of vegetables and it was excellent, the waiter Ko Nyi was very kind and fast, a place to recommend!!"</p>
+                <div class="review-author">cris 05</div>
+                <div class="review-date">ในสัปดาห์ที่ผ่านมา</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="galerie">
+        <h2>บรรยากาศและอาหาร</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="assets/hero.jpg" alt="ร้านอาหารทะเล Salt & Oak">
+            </div>
+            <div class="gallery-item">
+                <img src="assets/gallery-1.jpg" alt="อาหารทะเลสดใหม่">
+            </div>
+            <div class="gallery-item">
+                <img src="assets/gallery-2.jpg" alt="บรรยากาศร้านอาหาร">
+            </div>
+        </div>
+    </section>
+
+    <!-- Hours & Location -->
+    <section id="horaires">
+        <h2>เวลาเปิดให้บริการและที่ตั้ง</h2>
+        <div class="hours-location-wrapper">
+            <div class="hours-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>วัน</th>
+                            <th>เวลา</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>จันทร์</td>
+                            <td>13:00 – 23:00</td>
+                        </tr>
+                        <tr>
+                            <td>อังคาร</td>
+                            <td>13:00 – 23:00</td>
+                        </tr>
+                        <tr>
+                            <td>พุธ</td>
+                            <td>13:00 – 23:00</td>
+                        </tr>
+                        <tr>
+                            <td>พฤหัสบดี</td>
+                            <td>13:00 – 23:00</td>
+                        </tr>
+                        <tr>
+                            <td>ศุกร์</td>
+                            <td>13:00 – 23:00</td>
+                        </tr>
+                        <tr>
+                            <td>เสาร์</td>
+                            <td>13:00 – 23:00</td>
+                        </tr>
+                        <tr>
+                            <td>อาทิตย์</td>
+                            <td>13:00 – 23:00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="location-info">
+                <h3>ที่ตั้ง</h3>
+                <p><strong>Salt & Oak</strong></p>
+                <p>24/36, Bo Put, Amphoe Koh samui, ตำบล บ่อผุด koh samui, สุราษฎร์ธานี 84320, Thailand</p>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.5234567890!2d100.3!3d8.8!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e1a1a1a1a1a1a1%3A0x1a1a1a1a1a1a1a1a!2sSalt%20%26%20Oak!5e0!3m2!1sth!2sth!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact">
+        <h2>ติดต่อเรา</h2>
+        <form class="contact-form" action="#" method="POST">
+            <div class="form-group">
+                <label for="name">ชื่อของคุณ</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">อีเมล</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">เบอร์โทรศัพท์</label>
+                <input type="tel" id="phone" name="phone">
+            </div>
+            <div class="form-group">
+                <label for="date">วันที่ต้องการจอง</label>
+                <input type="date" id="date" name="date">
+            </div>
+            <div class="form-group">
+                <label for="guests">จำนวนคน</label>
+                <input type="number" id="guests" name="guests" min="1">
+            </div>
+            <div class="form-group">
+                <label for="message">ข้อความ</label>
+                <textarea id="message" name="message"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit">ส่งข้อความ</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Trust Signals -->
+    <section id="confiance">
+        <h2>ทำไมต้องเลือก Salt & Oak</h2>
+        <div class="trust-signals-container">
+            <div class="trust-badge">
+                <div class="number">4.9</div>
+                <p>รีวิว 4.9 ดาว</p>
+            </div>
+            <div class="trust-badge">
+                <div class="number">1,419</div>
+                <p>ลูกค้าที่พอใจ</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Salt & Oak</p>
+        <p>24/36, Bo Put, Amphoe Koh samui, ตำบล บ่อผุด koh samui, สุราษฎร์ธานี 84320, Thailand</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const burgerBtn = document.getElementById('burgerBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        burgerBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('open');
+        });
+
+        // Close menu when link is clicked
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('open');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav')) {
+                navMenu.classList.remove('open');
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.menu-card, .review-card, .trust-badge, .gallery-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
